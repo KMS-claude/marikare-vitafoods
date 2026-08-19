@@ -17,7 +17,7 @@
 :root{
   --deep:#14324F; --coral:#E4674E; --seafoam:#A8C5BB; --fog:#F7F5F0;
   --brass:#A87F42; --ink:#1A2A38; --ink-2:#15222E; --steel:#5E7686;
-  --fog-70:rgba(247,245,240,.72); --fog-45:rgba(247,245,240,.45);
+  --fog-70:rgba(247,245,240,.72); --fog-60:rgba(247,245,240,.60); --fog-45:rgba(247,245,240,.45);
   --deep-12:rgba(20,50,79,.12); --deep-08:rgba(20,50,79,.08);
   --disp:'Outfit','Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;
   --body:'Outfit','Apple SD Gothic Neo','Pretendard','Noto Sans KR',-apple-system,sans-serif;
@@ -27,18 +27,15 @@ html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{background:var(--fog);color:var(--deep);font-family:var(--body);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;}
 
-/* ── language toggle ─────────────────────────── */
+/* ── language toggle ── */
 [data-lang="en"] .ko{display:none!important}
 [data-lang="ko"] .en{display:none!important}
 .langbar{position:fixed;top:18px;right:18px;z-index:50;display:flex;gap:2px;background:rgba(26,42,56,.55);backdrop-filter:blur(8px);border:1px solid rgba(247,245,240,.22);border-radius:999px;padding:3px;}
 .langbar button{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.06em;border:0;background:transparent;color:var(--fog-70);padding:5px 12px;border-radius:999px;cursor:pointer;}
 .langbar button[aria-pressed="true"]{background:var(--fog);color:var(--ink);}
 .langbar button:focus-visible{outline:2px solid var(--coral);outline-offset:1px;}
-body.light-chrome .langbar{background:rgba(20,50,79,.08);border-color:var(--deep-12);}
-body.light-chrome .langbar button{color:var(--steel);}
-body.light-chrome .langbar button[aria-pressed="true"]{background:var(--deep);color:var(--fog);}
 
-/* ── shared type ─────────────────────────────── */
+/* ── shared ── */
 .wrap{max-width:1060px;margin:0 auto;padding:0 28px;}
 .eyebrow{font-family:var(--disp);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);}
 h1,h2,h3{font-family:var(--disp);text-wrap:balance;}
@@ -48,15 +45,17 @@ section{padding:96px 0;}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.in{opacity:1;transform:none;}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.ko{word-break:keep-all;overflow-wrap:break-word;}
+.srcnote{margin-top:22px;font-size:12px;color:var(--steel);max-width:80ch;line-height:1.6;}
 
-/* ── hero ────────────────────────────────────── */
+/* ── hero ── */
 .hero{position:relative;background:var(--ink);color:var(--fog);padding:0;overflow:hidden;}
-.hero .wrap{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:96px;padding-bottom:120px;position:relative;}
+.hero .wrap{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:96px;padding-bottom:150px;position:relative;}
 .hero .eyebrow{color:var(--seafoam);}
 .hero h1{font-size:clamp(38px,6.2vw,72px);font-weight:700;line-height:1.06;letter-spacing:-.015em;margin:22px 0 22px;max-width:15ch;}
 .hero .lede{color:var(--fog-70);max-width:52ch;}
 .hero-logo{width:min(340px,58vw);height:auto;display:block;margin-bottom:34px;}
-.horizon{position:absolute;left:0;right:0;height:3px;background:var(--coral);opacity:.9;bottom:118px;transform-origin:left center;}
+.horizon{position:absolute;left:0;right:0;height:3px;background:var(--coral);opacity:.9;bottom:96px;transform-origin:left center;}
 @media (prefers-reduced-motion:no-preference){
   .horizon{transform:scaleX(0);animation:draw 1.6s cubic-bezier(.7,0,.2,1) .3s forwards;}
   @keyframes draw{to{transform:scaleX(1)}}
@@ -68,22 +67,33 @@ section{padding:96px 0;}
 .btn-coral:hover{background:#d95a41;}
 .btn-ghost{border:1px solid rgba(247,245,240,.35);color:var(--fog);}
 .btn-ghost:hover{border-color:var(--fog);}
-.hero-meta{margin-top:26px;font-size:13px;letter-spacing:.05em;color:var(--fog-45);font-family:var(--disp);}
+.hero-meta{margin-top:26px;font-size:13px;letter-spacing:.05em;color:var(--fog-70);font-family:var(--disp);}
 
-/* ── stats band ──────────────────────────────── */
-.band{background:var(--fog);}
+/* ── stats (shared tile) ── */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:44px;}
 .stat{background:#fff;border:1px solid var(--deep-08);border-radius:14px;padding:24px 22px;}
 .stat b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(28px,3.4vw,38px);letter-spacing:-.01em;font-variant-numeric:tabular-nums;line-height:1.1;}
 .stat span{display:block;margin-top:6px;font-size:13.5px;color:var(--steel);line-height:1.45;}
+.stat .src{display:block;margin-top:8px;font-size:11px;color:var(--steel);opacity:.75;letter-spacing:.03em;}
+
+/* §2 company — fog */
+.band{background:var(--fog);}
 .explain{margin-top:44px;background:var(--seafoam);border-radius:18px;padding:34px 36px;color:var(--deep);}
 .explain h3{font-size:19px;font-weight:700;margin-bottom:10px;}
 .explain p{max-width:74ch;font-size:15.5px;}
 
-/* ── how ─────────────────────────────────────── */
-.how{background:#fff;}
+/* §3 seafarer — white */
+.seafarer{background:#fff;}
+.needgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:44px;}
+.need{background:var(--fog);border-radius:14px;padding:24px 22px;border:1px solid var(--deep-08);}
+.need b{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(26px,3vw,34px);letter-spacing:-.01em;line-height:1.1;font-variant-numeric:tabular-nums;}
+.need p{margin-top:7px;font-size:13.5px;color:var(--steel);line-height:1.5;}
+.need .src{display:block;margin-top:9px;font-size:10.5px;color:var(--steel);opacity:.7;letter-spacing:.04em;text-transform:uppercase;font-family:var(--disp);}
+
+/* §4 how — fog */
+.how{background:var(--fog);}
 .timeline{margin:52px 0 10px;position:relative;}
-.tl-line{position:absolute;top:26px;left:4%;right:4%;height:2px;background:var(--deep-12);}
+.tl-line{position:absolute;top:26px;left:8px;right:calc(25% - 8px);height:2px;background:var(--deep-12);}
 .tl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;}
 .tl-step{padding-top:52px;position:relative;}
 .tl-step::before{content:"";position:absolute;top:18px;left:0;width:16px;height:16px;border-radius:50%;background:var(--fog);border:3px solid var(--deep);}
@@ -91,35 +101,62 @@ section{padding:96px 0;}
 .tl-step .d{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.14em;color:var(--steel);}
 .tl-step h3{font-size:17px;margin:6px 0 6px;font-weight:700;}
 .tl-step p{font-size:14.5px;color:var(--steel);line-height:1.55;}
-@media(max-width:760px){.tl-grid{grid-template-columns:1fr 1fr}. tl-line{display:none}}
+@media(max-width:760px){.tl-grid{grid-template-columns:1fr 1fr}.tl-line{display:none}}
 .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:48px;}
-.pillar{background:var(--fog);border-radius:14px;padding:24px;}
+.pillar{background:#fff;border:1px solid var(--deep-08);border-radius:14px;padding:24px;}
 .pillar h3{font-size:16px;font-weight:700;margin-bottom:8px;}
 .pillar p{font-size:14.5px;color:var(--steel);}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;}
-.chip{font-family:var(--disp);font-weight:600;font-size:13.5px;letter-spacing:.03em;color:var(--deep);border:1.5px solid var(--deep-12);border-radius:999px;padding:9px 18px;background:var(--fog);}
 
-/* ── brands ──────────────────────────────────── */
-.brands{background:var(--ink);color:var(--fog);}
-.brands .eyebrow{color:var(--seafoam);}
-.brands .lede{color:var(--fog-70);}
+/* §5 categories — white */
+.cats{background:#fff;}
+.catgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:48px;}
+.cat{background:var(--fog);border-radius:16px;padding:28px 26px;position:relative;overflow:hidden;}
+.cat .csym{width:34px;height:34px;margin-bottom:16px;}
+.cat h3{font-size:18px;font-weight:700;}
+.cat .kn{display:block;font-size:12.5px;color:var(--steel);font-weight:600;letter-spacing:.06em;margin:3px 0 10px;font-family:var(--disp);}
+.cat p{font-size:14.5px;color:var(--steel);line-height:1.55;}
+.cat.hub{background:var(--ink);color:var(--fog);}
+.cat.hub p{color:var(--fog-70);}
+.cat.hub .kn{color:var(--seafoam);}
+.catnote{margin-top:26px;font-size:14px;color:var(--steel);max-width:72ch;}
+
+/* §6 market — deep */
+.market .stat b{white-space:nowrap;font-size:clamp(26px,2.5vw,32px);}
+.market{background:var(--deep);color:var(--fog);}
+.market .eyebrow{color:var(--seafoam);}
+.market .lede{color:var(--fog-70);}
+.market .stat{background:rgba(247,245,240,.06);border:1px solid rgba(247,245,240,.12);}
+.market .stat b{color:var(--fog);}
+.market .stat span{color:var(--fog-70);}
+.market .stat .src{color:var(--fog-60);}
+.market .srcnote{color:var(--fog-70);}
+
+/* §7 brands — white */
+.brands{background:#fff;}
 .nc{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:44px;}
-.nc article{border:1px solid rgba(247,245,240,.14);border-radius:14px;padding:26px 24px;background:rgba(247,245,240,.04);}
+.nc article{border:1.5px solid var(--deep-12);border-radius:14px;padding:26px 24px;background:var(--fog);}
 .nc h3{font-size:16.5px;font-weight:700;margin-bottom:8px;}
-.nc p{font-size:14.5px;color:var(--fog-70);}
-.nc .no{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.16em;color:var(--seafoam);display:block;margin-bottom:12px;}
-.mkt{margin-top:46px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
-.mkt .stat{background:rgba(247,245,240,.05);border:1px solid rgba(247,245,240,.12);}
-.mkt .stat b{color:var(--fog);}
-.mkt .stat span{color:var(--fog-45);}
-.pilot{margin-top:46px;border-left:3px solid var(--brass);padding:6px 0 6px 22px;}
-.pilot p{font-size:16.5px;max-width:64ch;color:var(--fog);}
-.brands .hero-cta{margin-top:44px;}
+.nc p{font-size:14.5px;color:var(--steel);}
+.nc .no{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.16em;color:var(--brass);display:block;margin-bottom:12px;}
+
+/* §8 partnership — ink */
+.partner{background:var(--ink);color:var(--fog);}
+.partner .eyebrow{color:var(--seafoam);}
+.partner .lede{color:var(--fog-70);}
+.gets{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:44px;}
+.get{border:1px solid rgba(247,245,240,.14);border-radius:14px;padding:24px;background:rgba(247,245,240,.04);}
+.get h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.get p{font-size:14.5px;color:var(--fog-70);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:44px;}
+.step{border-left:3px solid var(--brass);padding:4px 0 4px 18px;}
+.step .when{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--seafoam);}
+.step p{font-size:14.5px;color:var(--fog-70);margin-top:6px;}
+.partner .hero-cta{margin-top:46px;}
 .contact-line{margin-top:18px;font-size:14.5px;color:var(--fog-70);font-family:var(--disp);letter-spacing:.02em;}
 .contact-line a{color:var(--fog);text-decoration:none;border-bottom:1px solid rgba(247,245,240,.3);}
 
-/* ── footer ──────────────────────────────────── */
-footer{background:var(--ink-2);color:var(--fog-45);padding:44px 0 54px;font-size:13px;line-height:1.7;}
+/* footer */
+footer{background:var(--ink-2);color:var(--fog-60);padding:44px 0 54px;font-size:13px;line-height:1.7;}
 footer .frow{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start;}
 footer b{color:var(--fog-70);font-family:var(--disp);font-weight:600;letter-spacing:.04em;}
 footer a{color:var(--fog-70);text-decoration:none;}
@@ -133,7 +170,7 @@ footer a{color:var(--fog-70);text-decoration:none;}
   <button type="button" data-setlang="ko" aria-pressed="false">한국어</button>
 </nav>
 
-<!-- ══ HERO ══════════════════════════════════════ -->
+<!-- ══ 1 · HERO ══ -->
 <header class="hero">
   <div class="horizon" aria-hidden="true"></div>
   <div class="wrap">
@@ -142,20 +179,20 @@ footer a{color:var(--fog-70);text-decoration:none;}
     <p class="eyebrow ko">비타푸드 아시아 2026 · 방콕 · 9월 2–4일 · 현장 미팅 환영</p>
     <h1 class="en">Duty-free wellness for the world's seafarers.</h1>
     <h1 class="ko">전 세계 선원을 위한<br>면세 웰니스 채널.</h1>
-    <p class="lede en">MARIKARE is a members-only online store that delivers premium supplements to ship crews — on board, in bond, during their port calls in Korea. A retail channel that has never existed for this industry.</p>
-    <p class="lede ko">MARIKARE는 검증된 선원 전용 폐쇄형 온라인 스토어입니다. 한국 항만에 기항하는 선박의 선원에게, 정박 중 본선으로 프리미엄 건강기능식품을 보세 상태 그대로 전달합니다. 이 산업에 존재한 적 없던 리테일 채널입니다.</p>
+    <p class="lede en">MARIKARE is a members-only online store that delivers premium wellness products to ship crews — on board, in bond, during their port calls in Korea. A retail channel that has never existed for this industry.</p>
+    <p class="lede ko">MARIKARE는 검증된 선원 전용 폐쇄형 온라인 스토어입니다. 한국 항만에 기항하는 선박의 선원에게, 정박 중 본선으로 프리미엄 웰니스 제품을 보세 상태 그대로 전달합니다. 이 산업에 존재한 적 없던 리테일 채널입니다.</p>
     <div class="hero-cta">
       <a class="btn btn-coral en" href="mailto:lloydlim@koreams.kr?subject=MARIKARE%20%C2%B7%20Vitafoods%20Asia%20meeting">Book a meeting in Bangkok</a>
       <a class="btn btn-coral ko" href="mailto:lloydlim@koreams.kr?subject=MARIKARE%20비타푸드%20미팅%20요청">방콕 미팅 요청하기</a>
-      <a class="btn btn-ghost en" href="#channel">3-minute briefing ↓</a>
-      <a class="btn btn-ghost ko" href="#channel">3분 브리핑 ↓</a>
+      <a class="btn btn-ghost en" href="#channel">5-minute briefing ↓</a>
+      <a class="btn btn-ghost ko" href="#channel">5분 브리핑 ↓</a>
     </div>
     <p class="hero-meta en">By KMS Co., Ltd. — Korea's leading marine duty-free distributor, Busan</p>
     <p class="hero-meta ko">KMS(주식회사 케이엠에스) — 대한민국 대표 선박 면세 유통사, 부산</p>
   </div>
 </header>
 
-<!-- ══ §2 THE CHANNEL ═══════════════════════════ -->
+<!-- ══ 2 · THE COMPANY ══ -->
 <section class="band" id="channel">
   <div class="wrap reveal">
     <p class="eyebrow en">The company behind it</p>
@@ -179,16 +216,55 @@ footer a{color:var(--fog-70);text-decoration:none;}
   </div>
 </section>
 
-<!-- ══ §3 HOW IT WORKS ══════════════════════════ -->
+<!-- ══ 3 · THE SEAFARER ══ -->
+<section class="seafarer">
+  <div class="wrap reveal">
+    <p class="eyebrow en">The customer nobody can reach</p>
+    <p class="eyebrow ko">누구도 닿지 못한 고객</p>
+    <h2 class="en">1.9 million people live where retail can't follow.</h2>
+    <h2 class="ko">190만 명이, 리테일이 닿지 않는 곳에서 삽니다.</h2>
+    <p class="lede en">Seafarers crew the ships that move 90% of world trade — and spend months at a time beyond the reach of any pharmacy, supplement store or wellness shelf. Their health burden is documented, not anecdotal:</p>
+    <p class="lede ko">세계 교역의 90%를 움직이는 선원들은 약국도, 짐도, 웰니스 매장도 없는 바다 위에서 몇 달을 보냅니다. 이들의 건강 부담은 짐작이 아니라 문헌으로 기록되어 있습니다:</p>
+    <div class="needgrid">
+      <div class="need"><b>No.1</b>
+        <p class="en">Gastrointestinal illness ranks first among illnesses reported on board merchant vessels.</p>
+        <p class="ko">위장관 질환 — 상선 선상 질병 보고 1위.</p>
+        <span class="src">Int Marit Health · 4-yr telemedicine data</span></div>
+      <div class="need"><b>76%</b>
+        <p class="en">of European seafarers tested were vitamin-D deficient or insufficient.</p>
+        <p class="ko">검사받은 유럽 선원 중 비타민D 결핍·부족 비율.</p>
+        <span class="src">Peer-reviewed maritime health studies</span></div>
+      <div class="need"><b>88%</b>
+        <p class="en">dental-caries prevalence among seafarers — with no dentist for months at sea.</p>
+        <p class="ko">선원 치아우식 유병률 — 승선 중 치과는 없습니다.</p>
+        <span class="src">PLOS ONE · seafarer oral health</span></div>
+      <div class="need"><b>65%</b>
+        <p class="en">average fatigue rate across watch systems; sleep is the daily battle of shift life at sea.</p>
+        <p class="ko">당직 체계 전반의 평균 피로율 — 수면은 항해의 일상 과제입니다.</p>
+        <span class="src">Frontiers in Public Health</span></div>
+      <div class="need"><b>UV↑</b>
+        <p class="en">Deck crews carry documented excess risk of sun-related skin conditions on open-sea routes.</p>
+        <p class="ko">갑판부는 해상 자외선 노출로 피부 질환 위험이 높다는 사실이 문헌으로 확인돼 있습니다.</p>
+        <span class="src">Occupational dermatology literature</span></div>
+      <div class="need"><b>20%</b>
+        <p class="en">of crews already buy supplements — sourced ashore, ad hoc, whenever a port allows.</p>
+        <p class="ko">선원 5명 중 1명은 이미 영양제를 삽니다 — 기항지에서, 되는 대로.</p>
+        <span class="src">Crew nutrition surveys</span></div>
+    </div>
+    <p class="srcnote en">Sources: BIMCO/ICS Seafarer Workforce Report (1.89M seafarers); peer-reviewed occupational-health literature. Full citations available in our partner briefing. Statements describe documented health burdens of the profession, not product claims.</p>
+    <p class="srcnote ko">수치는 직업보건 학술 문헌 기준이며 전체 출처는 파트너 브리핑에서 제공합니다. 위 내용은 직업적 건강 부담에 대한 기록이며 제품 효능 표시가 아닙니다.</p>
+  </div>
+</section>
+
+<!-- ══ 4 · HOW IT WORKS ══ -->
 <section class="how">
   <div class="wrap reveal">
     <p class="eyebrow en">How MARIKARE works</p>
     <p class="eyebrow ko">MARIKARE 작동 방식</p>
     <h2 class="en">The port call becomes the store.</h2>
     <h2 class="ko">기항, 그 자체가 매장이 됩니다.</h2>
-    <p class="lede en">Seafarers can't shop ashore — parcels can't reliably meet a moving vessel, and personal-import rules don't fit crew life. MARIKARE syncs the store to the ship's schedule instead.</p>
-    <p class="lede ko">선원은 육상 쇼핑이 어렵습니다. 택배는 움직이는 배를 만나지 못하고, 개인수입 규정은 승선 생활과 맞지 않습니다. MARIKARE는 반대로, 스토어를 배의 스케줄에 동기화합니다.</p>
-
+    <p class="lede en">Parcels can't reliably meet a moving vessel, and personal-import rules don't fit crew life. MARIKARE syncs the store to the ship's schedule instead.</p>
+    <p class="lede ko">택배는 움직이는 배를 만나지 못하고, 개인 직구(수입 통관) 규정은 승선 생활과 맞지 않습니다. MARIKARE는 반대로, 스토어를 배의 스케줄에 동기화합니다.</p>
     <div class="timeline">
       <div class="tl-line" aria-hidden="true"></div>
       <div class="tl-grid">
@@ -205,9 +281,9 @@ footer a{color:var(--fog-70);text-decoration:none;}
           <p class="ko">세관 서류·피킹이 부산 보세창고에서 진행됩니다.</p>
         </div>
         <div class="tl-step">
-          <div class="d">D 0</div>
+          <div class="d">D−0</div>
           <h3 class="en">Delivered on board</h3><h3 class="ko">본선 인도</h3>
-          <p class="en">Handed to the crew on the vessel during the port stay, via the chandler network that already serves the ship.</p>
+          <p class="en">Handed to the crew during the port stay, via the chandler network that already serves the ship.</p>
           <p class="ko">정박 중 본선에서 수령 — 이미 그 배를 담당하는 선용품사 네트워크가 전달합니다.</p>
         </div>
         <div class="tl-step">
@@ -218,12 +294,11 @@ footer a{color:var(--fog-70);text-decoration:none;}
         </div>
       </div>
     </div>
-
     <div class="pillars">
       <div class="pillar">
         <h3 class="en">Members only</h3><h3 class="ko">폐쇄형 멤버십</h3>
         <p class="en">Verified seafarers only — seafarer book and company KYC at sign-up. No public storefront.</p>
-        <p class="ko">선원수첩·소속사 KYC를 통과한 검증 선원만 가입. 공개 스토어가 아닙니다.</p>
+        <p class="ko">선원수첩·소속 선사 KYC를 통과한 검증 선원만 가입. 공개 스토어가 아닙니다.</p>
       </div>
       <div class="pillar">
         <h3 class="en">Prices gated</h3><h3 class="ko">가격 비공개</h3>
@@ -241,64 +316,164 @@ footer a{color:var(--fog-70);text-decoration:none;}
         <p class="ko">항해 스케줄에 맞춘 복용 알림·리필 타이밍을 담은 전용 앱이 함께합니다.</p>
       </div>
     </div>
-
-    <div class="chips" aria-label="Categories">
-      <span class="chip en">Vitamins &amp; Minerals</span><span class="chip ko">비타민 · 미네랄</span>
-      <span class="chip en">Omega-3</span><span class="chip ko">오메가3</span>
-      <span class="chip en">Probiotics</span><span class="chip ko">프로바이오틱스</span>
-      <span class="chip en">Protein &amp; Sports</span><span class="chip ko">프로틴 · 스포츠뉴트리션</span>
-      <span class="chip en">Sleep &amp; Recovery</span><span class="chip ko">수면 · 리커버리</span>
-    </div>
   </div>
 </section>
 
-<!-- ══ §4 FOR BRANDS ════════════════════════════ -->
+<!-- ══ 5 · CATEGORIES ══ -->
+<section class="cats">
+  <div class="wrap reveal">
+    <p class="eyebrow en">What we curate</p>
+    <p class="eyebrow ko">무엇을 큐레이션하는가</p>
+    <h2 class="en">Five decks of care. One store.</h2>
+    <h2 class="ko">다섯 개의 케어 덱, 하나의 스토어.</h2>
+    <p class="lede en">Every category maps to a documented need of life at sea — nothing is on the shelf because a catalog had it.</p>
+    <p class="lede ko">모든 카테고리는 항해 생활의 실증된 니즈에 대응합니다 — 카탈로그에 있다는 이유로 진열하지 않습니다.</p>
+    <div class="catgrid">
+      <div class="cat">
+        <svg class="csym" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="c1"><circle cx="50" cy="50" r="40"/></clipPath></defs><circle cx="50" cy="50" r="40" fill="#14324F"/><rect x="0" y="38.75" width="100" height="5.5" fill="#A8C5BB" clip-path="url(#c1)"/></svg>
+        <h3 class="en">Daily Nutrition</h3><h3 class="ko">데일리 뉴트리션</h3>
+        <span class="kn en">데일리 뉴트리션</span><span class="kn ko">Daily Nutrition</span>
+        <p class="en">Vitamins, minerals, omega-3, gut health — the daily base, packed for long voyages and built to hold in tropical heat.</p>
+        <p class="ko">비타민·미네랄·오메가3·장 건강 — 장기 항해와 열대 항로에도 변질 없이 견디는 데일리 베이스.</p>
+      </div>
+      <div class="cat">
+        <svg class="csym" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="c2"><circle cx="50" cy="50" r="40"/></clipPath></defs><circle cx="50" cy="50" r="40" fill="#5E7686"/><rect x="0" y="55" width="100" height="5.5" fill="#F7F5F0" clip-path="url(#c2)"/></svg>
+        <h3 class="en">Voyage Rhythm</h3><h3 class="ko">항해 리듬 케어</h3>
+        <span class="kn en">항해 리듬 케어</span><span class="kn ko">Voyage Rhythm</span>
+        <p class="en">Rest and recovery essentials for watch life — magnesium, amino acids and calming herbal lines.</p>
+        <p class="ko">당직 생활의 휴식·리커버리 필수품 — 마그네슘, 아미노산, 허브 라인.</p>
+      </div>
+      <div class="cat">
+        <svg class="csym" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="c3"><circle cx="50" cy="50" r="40"/></clipPath></defs><circle cx="50" cy="50" r="40" fill="#14324F"/><rect x="0" y="30" width="100" height="5.5" fill="#A8C5BB" clip-path="url(#c3)"/><rect x="0" y="47.25" width="100" height="5.5" fill="#A8C5BB" clip-path="url(#c3)"/><rect x="0" y="64.5" width="100" height="5.5" fill="#A8C5BB" clip-path="url(#c3)"/></svg>
+        <h3 class="en">Onboard Gym</h3><h3 class="ko">온보드 짐</h3>
+        <span class="kn en">온보드 짐</span><span class="kn ko">Onboard Gym</span>
+        <p class="en">Protein, creatine and electrolytes — for the gym below deck and the heat of the engine room.</p>
+        <p class="ko">프로틴·크레아틴·전해질 — 선내 체육관, 그리고 무더운 기관실 당직까지.</p>
+      </div>
+      <div class="cat">
+        <svg class="csym" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="c4"><circle cx="50" cy="50" r="40"/></clipPath></defs><circle cx="50" cy="50" r="40" fill="#A8C5BB"/><rect x="0" y="38.75" width="100" height="5.5" fill="#14324F" clip-path="url(#c4)"/></svg>
+        <h3 class="en">Onboard Care</h3><h3 class="ko">온보드 케어</h3>
+        <span class="kn en">온보드 케어</span><span class="kn ko">Onboard Care</span>
+        <p class="en">Oral and personal care for months without a pharmacy — the gap every slop chest leaves open.</p>
+        <p class="ko">약국 없는 몇 달을 위한 구강·퍼스널 케어 — 선내 매점이 비워둔 자리입니다.</p>
+      </div>
+      <div class="cat">
+        <svg class="csym" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="c5"><circle cx="50" cy="50" r="40"/></clipPath></defs><circle cx="50" cy="50" r="40" fill="#5E7686"/><circle cx="50" cy="30" r="12" fill="#F7F5F0" clip-path="url(#c5)"/><rect x="0" y="55" width="100" height="5.5" fill="#F7F5F0" clip-path="url(#c5)"/></svg>
+        <h3 class="en">Deck Protection</h3><h3 class="ko">갑판 프로텍션</h3>
+        <span class="kn en">갑판 프로텍션</span><span class="kn ko">Deck Protection</span>
+        <p class="en">Sun and skin protection for open-deck work — framed as work gear, not beauty.</p>
+        <p class="ko">갑판 작업을 위한 자외선·피부 보호 — 뷰티가 아니라 작업 보호구의 관점으로.</p>
+      </div>
+      <div class="cat hub">
+        <svg class="csym" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="c6"><circle cx="50" cy="50" r="40"/></clipPath></defs><circle cx="50" cy="50" r="40" fill="#F7F5F0"/><rect x="0" y="38.75" width="100" height="5.5" fill="#E4674E" clip-path="url(#c6)"/></svg>
+        <h3 class="en">Wellness Hub</h3><h3 class="ko">웰니스 허브</h3>
+        <span class="kn en">웰니스 허브</span><span class="kn ko">Wellness Hub</span>
+        <p class="en">Multilingual wellness content synced to life at sea — watch-rhythm guides, first-voyage onboarding, deck-sun playbooks. The content layer that binds the store.</p>
+        <p class="ko">항해 생활에 동기화된 다국어 웰니스 콘텐츠 — 당직 리듬 가이드, 첫 승선 온보딩, 갑판 자외선 플레이북. 스토어를 묶는 콘텐츠 레이어입니다.</p>
+      </div>
+    </div>
+    <p class="catnote en">Curated, not crowded: a hard SKU cap per category, one premium and one accessible brand per slot, halal and vegetarian options considered across the range. Category-exclusive partnerships are open for founding brands.</p>
+    <p class="catnote ko">가득 채우지 않고 큐레이션합니다: 카테고리별 SKU 상한, 슬롯당 프리미엄·실속 브랜드 병행, 할랄·베지 옵션 상시 검토·반영. 파운딩 브랜드에는 카테고리 독점 옵션이 열려 있습니다.</p>
+  </div>
+</section>
+
+<!-- ══ 6 · MARKET ══ -->
+<section class="market">
+  <div class="wrap reveal">
+    <p class="eyebrow en">The market</p>
+    <p class="eyebrow ko">시장</p>
+    <h2 class="en">A niche by headcount.<br>A channel by design.</h2>
+    <h2 class="ko">숫자로는 니치, 구조로는 채널.</h2>
+    <p class="lede en">Small enough that no global retailer will ever build for it. Large enough to matter — and reachable only through the port-call logistics we already run.</p>
+    <p class="lede ko">글로벌 리테일러가 뛰어들기엔 작고, 의미 있는 매출이 되기엔 충분히 큰 시장 — 그리고 우리가 이미 운영하는 기항 물류로만 닿을 수 있습니다.</p>
+    <div class="stats">
+      <div class="stat"><b>$182.5M</b><span class="en">global seafarer supplement &amp; wellness TAM per year</span><span class="ko">전 세계 선원 건기식·웰니스 TAM (연간)</span><span class="src en">KMS analysis, top-down × bottom-up cross-validated</span><span class="src ko">KMS 분석 — 톱다운·바텀업 교차검증</span></div>
+      <div class="stat"><b>106,003</b><span class="en">voyages called at Korean ports in 2025</span><span class="ko">2025년 한국 항만 입항 항차 (전수)</span><span class="src en">PORT-MIS · full-year 2025</span><span class="src ko">PORT-MIS · 2025 연간 전수</span></div>
+      <div class="stat"><b>13,763</b><span class="en">unique vessels — a floating city of crews, every year</span><span class="ko">고유 입항 선박 — 해마다 선원들로 채워지는, 떠 있는 도시 하나</span><span class="src en">PORT-MIS · 2025</span><span class="src ko">PORT-MIS · 2025 전수</span></div>
+      <div class="stat"><b>$3.8–13.7M</b><span class="en">addressable crew wellness demand per year, Korea calls alone</span><span class="ko">한국 기항만으로 연간 도달 가능한 선원 웰니스 수요</span><span class="src en">KMS analysis</span><span class="src ko">KMS 분석</span></div>
+    </div>
+    <p class="srcnote en">Korea is the beachhead, not the boundary: the same crews sail on to every port in the world — and stay members wherever they go.</p>
+    <p class="srcnote ko">한국은 경계가 아니라 교두보입니다. 같은 선원들이 전 세계 항만으로 항해를 이어가고, 어디에 있든 회원으로 남습니다.</p>
+  </div>
+</section>
+
+<!-- ══ 7 · NON-CONFLICT ══ -->
 <section class="brands" id="brands">
   <div class="wrap reveal">
     <p class="eyebrow en">For brand partners</p>
     <p class="eyebrow ko">브랜드 파트너에게</p>
     <h2 class="en">Clean, incremental, controlled.</h2>
-    <h2 class="ko">깨끗하고, 증분이며, 통제됩니다.</h2>
+    <h2 class="ko">깨끗한 구조, 순증 매출, 완전한 통제.</h2>
     <p class="lede en">Seafarers are a customer base your existing channels structurally cannot reach. MARIKARE adds them without touching anything you've built.</p>
     <p class="lede ko">선원은 기존 채널이 구조적으로 닿지 못하는 수요입니다. MARIKARE는 귀사가 쌓아온 어떤 채널도 건드리지 않고 그 수요를 더합니다.</p>
-
     <div class="nc">
       <article>
         <span class="no">01</span>
-        <h3 class="en">No conflict with your domestic distributor</h3><h3 class="ko">국내 총판과 무충돌</h3>
+        <h3 class="en">No conflict with your domestic distributor</h3><h3 class="ko">국내 총판과 충돌 없음</h3>
         <p class="en">Bonded ship's-stores supply is an export under Korean customs law — outside domestic commerce entirely.</p>
         <p class="ko">보세 선용품 공급은 관세법상 수출 — 국내 유통 밖의 별도 레인입니다.</p>
       </article>
       <article>
         <span class="no">02</span>
-        <h3 class="en">No conflict with your DTC &amp; cross-border pricing</h3><h3 class="ko">DTC·직구 가격과 무충돌</h3>
+        <h3 class="en">No conflict with your DTC &amp; cross-border pricing</h3><h3 class="ko">DTC·직구 가격과 충돌 없음</h3>
         <p class="en">A closed mall with gated prices creates no public price anchor, anywhere.</p>
         <p class="ko">가격 비공개 폐쇄몰은 어디에도 공개 가격 앵커를 만들지 않습니다.</p>
       </article>
       <article>
         <span class="no">03</span>
         <h3 class="en">No leakage</h3><h3 class="ko">유출 없음</h3>
-        <p class="en">KYC'd members, on-board delivery, consumption at sea. eBay never sees it.</p>
+        <p class="en">KYC'd members, on-board delivery, consumption at sea. Marketplaces never see it.</p>
         <p class="ko">KYC 회원·본선 인도·해상 소비. 마켓플레이스에 흘러갈 경로가 없습니다.</p>
       </article>
     </div>
+  </div>
+</section>
 
-    <div class="mkt">
-      <div class="stat"><b>106,003</b><span class="en">voyages called at Korean ports in 2025 (PORT-MIS)</span><span class="ko">2025년 한국 항만 입항 항차 (PORT-MIS 전수)</span></div>
-      <div class="stat"><b>13,763</b><span class="en">unique vessels — a floating city of crews</span><span class="ko">고유 입항 선박 수</span></div>
-      <div class="stat"><b>$3.8–13.7M</b><span class="en">addressable crew supplement demand per year, Korea calls (KMS analysis)</span><span class="ko">한국 기항 선원 건기식 수요 추정 (KMS 분석, 연간)</span></div>
+<!-- ══ 8 · PARTNERSHIP ══ -->
+<section class="partner">
+  <div class="wrap reveal">
+    <p class="eyebrow en">Founding partners</p>
+    <p class="eyebrow ko">파운딩 파트너</p>
+    <h2 class="en">The pilot sails in 2027.<br>The crew list is being written now.</h2>
+    <h2 class="ko">파일럿은 2027년에 출항합니다.<br>승선 명단은 지금 쓰이고 있습니다.</h2>
+    <div class="gets">
+      <div class="get">
+        <h3 class="en">Category exclusivity</h3><h3 class="ko">카테고리 독점 옵션</h3>
+        <p class="en">Exclusive-by-category options across vitamins, minerals, protein, probiotics and personal care.</p>
+        <p class="ko">비타민·미네랄·프로틴·프로바이오틱스·퍼스널케어 카테고리별 독점 협의 가능.</p>
+      </div>
+      <div class="get">
+        <h3 class="en">A controlled test of marine retail</h3><h3 class="ko">통제된 해상 리테일 실증</h3>
+        <p class="en">A mixed-SKU pilot order, real sell-through data from a closed channel, zero brand-safety exposure.</p>
+        <p class="ko">혼합 SKU 파일럿 오더, 폐쇄 채널의 실판매 데이터, 브랜드 세이프티 리스크 제로.</p>
+      </div>
+      <div class="get">
+        <h3 class="en">Korea marine market intelligence</h3><h3 class="ko">한국 해상 시장 인텔리전스</h3>
+        <p class="en">Port-call analytics from 42 ports, crew-demographic insight, category benchmarks.</p>
+        <p class="ko">42개 항만 기항 데이터, 선원 세그먼트 인사이트, 카테고리 벤치마크 제공.</p>
+      </div>
+      <div class="get">
+        <h3 class="en">A partner, not a marketplace</h3><h3 class="ko">마켓플레이스가 아닌 파트너</h3>
+        <p class="en">One counterpart end-to-end: import, bond, compliance, delivery, CS — all run by KMS.</p>
+        <p class="ko">수입·보세·컴플라이언스·배송·CS까지 KMS가 단일 창구로 책임집니다.</p>
+      </div>
     </div>
-
-    <div class="pilot">
-      <p class="en"><b>Pilot launches 2027.</b> We are selecting founding brand partners now — category-exclusive options available for vitamins, minerals, protein and probiotics.</p>
-      <p class="ko"><b>파일럿은 2027년 출항합니다.</b> 지금은 파운딩 브랜드 파트너를 선정하는 단계입니다 — 비타민·미네랄·프로틴·프로바이오틱스 카테고리별 독점 옵션을 협의할 수 있습니다.</p>
+    <div class="steps">
+      <div class="step"><span class="when">NOW · 2026</span>
+        <p class="en">Founding brand selection — meet us at Vitafoods Asia, Bangkok.</p>
+        <p class="ko">파운딩 브랜드 선정 — 방콕 비타푸드에서 만나요.</p></div>
+      <div class="step"><span class="when">2027 · Q1</span>
+        <p class="en">Pilot sails: Korean vessels, verified crews, first live orders.</p>
+        <p class="ko">파일럿 출항: 한국 선박·검증 선원·첫 실주문.</p></div>
+      <div class="step"><span class="when">2027 · H2</span>
+        <p class="en">Scale to international crews calling at 42 Korean ports.</p>
+        <p class="ko">한국 42개 항만에 기항하는 국제 선원으로 확장.</p></div>
     </div>
-
     <div class="hero-cta">
       <a class="btn btn-coral en" href="mailto:lloydlim@koreams.kr?subject=MARIKARE%20%C2%B7%20Vitafoods%20Asia%20meeting">Meet us in Bangkok · 2–4 Sept</a>
       <a class="btn btn-coral ko" href="mailto:lloydlim@koreams.kr?subject=MARIKARE%20비타푸드%20미팅%20요청">방콕에서 만나기 · 9월 2–4일</a>
     </div>
-    <p class="contact-line en">Lloyd Lim, CEO · <a href="mailto:lloydlim@koreams.kr">lloydlim@koreams.kr</a> · +82 10 8705 8572</p>
+    <p class="contact-line en">Lloyd Lim, Founder &amp; CEO · <a href="mailto:lloydlim@koreams.kr">lloydlim@koreams.kr</a> · +82 10 8705 8572</p>
     <p class="contact-line ko">임성혁 대표이사 · <a href="mailto:lloydlim@koreams.kr">lloydlim@koreams.kr</a> · +82 10 8705 8572</p>
   </div>
 </section>
@@ -313,8 +488,8 @@ footer a{color:var(--fog-70);text-decoration:none;}
       <a href="https://www.koreams.kr">koreams.kr</a> · <a href="https://marikare.kr">marikare.kr</a></p>
     </div>
     <div style="max-width:380px">
-      <p class="en">Figures: KMS company records 2025 · PORT-MIS (Korean port authority data, full-year 2025). Market estimates: KMS internal analysis. MARIKARE is a closed, members-only store for verified seafarers; product availability subject to partner agreements.</p>
-      <p class="ko">수치 출처: KMS 사내 실적(2025)·PORT-MIS 전수 데이터(2025). 시장 추정치는 KMS 내부 분석입니다. MARIKARE는 검증 선원 전용 폐쇄몰이며, 상품 구성은 파트너 계약에 따릅니다.</p>
+      <p class="en">Figures: KMS company records 2025 · PORT-MIS (Korean port authority data, full-year 2025) · peer-reviewed maritime health literature. Market estimates: KMS internal analysis. MARIKARE is a closed, members-only store for verified seafarers; category composition subject to partner agreements and applicable regulations.</p>
+      <p class="ko">수치 출처: KMS 사내 실적(2025)·PORT-MIS 전수 데이터(2025)·직업보건 학술 문헌. 시장 추정치는 KMS 내부 분석입니다. MARIKARE는 검증 선원 전용 폐쇄몰이며, 카테고리 구성은 파트너 계약 및 관련 규정에 따릅니다.</p>
       <p style="margin-top:10px">© 2026 KMS Co., Ltd. · MARIKARE®</p>
     </div>
   </div>
@@ -323,7 +498,8 @@ footer a{color:var(--fog-70);text-decoration:none;}
 <script>
 (function(){
   var root=document.documentElement;
-  if(!root.getAttribute('data-lang'))root.setAttribute('data-lang','en');var saved=null;
+  if(!root.getAttribute('data-lang'))root.setAttribute('data-lang','en');
+  var saved=null;
   try{saved=localStorage.getItem('mk-lang')}catch(e){}
   if(saved==='ko'||saved==='en'){root.setAttribute('data-lang',saved);}
   function sync(){
